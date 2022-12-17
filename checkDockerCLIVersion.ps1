@@ -3,6 +3,8 @@
 )]
 param()
 
+$VERSION = "20.10.21"
+
 # for debug comment this
 $ErrorActionPreference = 'SilentlyContinue'
 
@@ -40,7 +42,6 @@ $web = [HtmlAgilityPack.HtmlWeb]::new()
 $html = $web.Load($_url)
 
 $latestVersion = $html.DocumentNode.SelectSingleNode("//h2").InnerText
-$VERSION = "20.10.21"
 
 # ret object
 $ret = [PSCustomObject]@{
