@@ -56,16 +56,16 @@ if ($latestVersion -ne $VERSION) {
 
     # printer
     $ret.lines.Add(
-        "New Docker version -> $latestVersion"
+        "New Docker Desktop version -> $latestVersion"
     ) | Out-Null
 
     # bot
     $ret.linesformated.Add(
-        "New Docker version -> ``$latestVersion``"
+        "New Docker Desktop version -> ``$latestVersion``"
     ) | Out-Null
 
     $ret.linesformated.Add(
-        "<https://docs.docker.com/engine/release-notes/>"
+        "<https://docs.docker.com/desktop/release-notes/>"
     ) | Out-Null
 }
 
