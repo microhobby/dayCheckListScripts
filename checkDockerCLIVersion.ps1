@@ -1,0 +1,69 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+    'PSAvoidUsingWriteHost', ""
+)]
+param()
+
+# use a nuget 🐥
+$nuget = (Get-PackageProvider -Name NuGet)
+
+if ($null -eq $nuget) {
+    Register-PackageSource `
+        -Name MyNuGet `
+        -Location https://www.nuget.org/api/v2 `
+        -ProviderName NuGet `
+        -Trusted | Out-Null
+}
+
+$browser = (Get-Package -Name HtmlAgilityPack -Destination .)
+
+if ($null -eq $browser) {
+    Install-Package `
+        -Name HtmlAgilityPack `
+        -ProviderName NuGet `
+        -Scope CurrentUser `
+        -RequiredVersion 1.11.46 `
+        -SkipDependencies `
+        -Destination . `
+        -Force
+}
+
+# load the dll
+$_dllPath = Resolve-Path "./HtmlAgilityPack.1.11.46/lib/netstandard2.0/HtmlAgilityPack.dll"
+[System.Reflection.Assembly]::LoadFrom($_dllPath) | Out-Null
+
+# get the version directly from Docker page
+$_url = "https://docs.docker.com/engine/release-notes/"
+$web = [HtmlAgilityPack.HtmlWeb]::new()
+$html = $web.Load($_url)
+
+$latestVersion = $html.DocumentNode.SelectSingleNode("//h2").InnerText
+$VERSION = "20.10.21"
+
+# ret object
+$ret = [PSCustomObject]@{
+    lines = [System.Collections.ArrayList]::new()
+    linesformated = [System.Collections.ArrayList]::new()
+    code = 0
+    slackbot = $true
+}
+
+if ($latestVersion -ne $VERSION) {
+    $ret.code = 3
+
+    # printer
+    $ret.lines.Add(
+        "New Docker version -> $latestVersion"
+    ) | Out-Null
+
+    # bot
+    $ret.linesformated.Add(
+        "New Docker version -> ``$latestVersion``"
+    ) | Out-Null
+
+    $ret.linesformated.Add(
+        "<https://docs.docker.com/engine/release-notes/>"
+    ) | Out-Null
+}
+
+$json = ConvertTo-Json -InputObject $ret
+Write-Host $json
