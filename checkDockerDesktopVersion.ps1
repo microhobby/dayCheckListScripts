@@ -27,7 +27,7 @@ if ($null -eq $browser) {
         -RequiredVersion 1.11.46 `
         -SkipDependencies `
         -Destination $env:NUGET_DEST `
-        -Force
+        -Force | Out-Null
 }
 
 # load the dll
