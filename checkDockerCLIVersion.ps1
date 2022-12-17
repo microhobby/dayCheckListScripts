@@ -3,8 +3,11 @@
 )]
 param()
 
+# for debug comment this
+$ErrorActionPreference = 'SilentlyContinue'
+
 # use a nuget 🐥
-$nuget = (Get-PackageProvider -Name NuGet)
+$nuget = (Get-PackageSource -Name MyNuGet)
 
 if ($null -eq $nuget) {
     Register-PackageSource `
@@ -14,7 +17,7 @@ if ($null -eq $nuget) {
         -Trusted | Out-Null
 }
 
-$browser = (Get-Package -Name HtmlAgilityPack -Destination .)
+$browser = (Get-Package -Name HtmlAgilityPack -Destination $env:NUGET_DEST)
 
 if ($null -eq $browser) {
     Install-Package `
@@ -23,12 +26,12 @@ if ($null -eq $browser) {
         -Scope CurrentUser `
         -RequiredVersion 1.11.46 `
         -SkipDependencies `
-        -Destination . `
+        -Destination $env:NUGET_DEST `
         -Force
 }
 
 # load the dll
-$_dllPath = Resolve-Path "./HtmlAgilityPack.1.11.46/lib/netstandard2.0/HtmlAgilityPack.dll"
+$_dllPath = Resolve-Path "$env:NUGET_DEST/HtmlAgilityPack.1.11.46/lib/netstandard2.0/HtmlAgilityPack.dll"
 [System.Reflection.Assembly]::LoadFrom($_dllPath) | Out-Null
 
 # get the version directly from Docker page
