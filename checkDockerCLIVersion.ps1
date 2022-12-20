@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = "20.10.21"
+$VERSION = "20.10.22"
 
 # for debug comment this
 $ErrorActionPreference = 'SilentlyContinue'
