@@ -3,7 +3,7 @@
 )]
 param()
 
-$VSCODE_VERSION = "1.74.2"
+$VSCODE_VERSION = "1.74.3"
 
 # ret object
 $ret = [PSCustomObject]@{
