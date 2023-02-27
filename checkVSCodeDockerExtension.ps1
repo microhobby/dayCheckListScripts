@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = "v1.23.3"
+$VERSION = "v1.24.0"
 
 # ret object
 $ret = [PSCustomObject]@{
