@@ -37,7 +37,7 @@ if ($latestVersion -ne $VSCODE_VERSION) {
         "<$url>"
     ) | Out-Null
 
-    # update the version file
+    # update the version file test
     $latestVersion | Out-File ./versions/vscode -Force -NoNewline
 }
 
