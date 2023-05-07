@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = Get-Content ./versions/dockerCLI
+$VERSION = Get-Content "$PSScriptRoot/versions/dockerCLI"
 
 # for debug comment this
 $ErrorActionPreference = 'SilentlyContinue'

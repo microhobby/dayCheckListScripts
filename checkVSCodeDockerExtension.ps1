@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = Get-Content ./versions/vscodeDocker
+$VERSION = Get-Content "$PSScriptRoot/versions/vscodeDocker"
 
 # ret object
 $ret = [PSCustomObject]@{

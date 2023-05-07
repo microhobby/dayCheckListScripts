@@ -3,7 +3,7 @@
 )]
 param()
 
-$VSCODE_VERSION = Get-Content ./versions/vscode
+$VSCODE_VERSION = Get-Content "$PSScriptRoot/versions/vscode"
 
 # ret object
 $ret = [PSCustomObject]@{

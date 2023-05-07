@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = Get-Content ./versions/linuxKernel
+$VERSION = Get-Content "$PSScriptRoot/versions/linuxKernel"
 
 # ret object
 $ret = [PSCustomObject]@{
