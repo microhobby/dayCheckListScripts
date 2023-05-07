@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = "23.0.5"
+$VERSION = Get-Content ./versions/dockerCLI
 
 # for debug comment this
 $ErrorActionPreference = 'SilentlyContinue'
@@ -67,6 +67,9 @@ if ($latestVersion -ne $VERSION) {
     $ret.linesformated.Add(
         "<https://docs.docker.com/engine/release-notes/>"
     ) | Out-Null
+
+    # update the version file
+    $latestVersion.Trim() | Out-File ./versions/dockerCLI -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret

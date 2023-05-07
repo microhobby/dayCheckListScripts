@@ -3,7 +3,7 @@
 )]
 param()
 
-$VSCODE_VERSION = "1.78.0"
+$VSCODE_VERSION = Get-Content ./versions/vscode
 
 # ret object
 $ret = [PSCustomObject]@{
@@ -36,6 +36,9 @@ if ($latestVersion -ne $VSCODE_VERSION) {
     $ret.linesformated.Add(
         "<$url>"
     ) | Out-Null
+
+    # update the version file
+    $latestVersion | Out-File ./versions/vscode -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret

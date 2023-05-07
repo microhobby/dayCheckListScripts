@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = "refs/tags/v6.1-rc8"
+$VERSION = Get-Content ./versions/linuxKernel
 
 # ret object
 $ret = [PSCustomObject]@{
@@ -23,6 +23,9 @@ $latestVersion = $obj[$obj.Count -1].ref
 if ($latestVersion -ne $VERSION) {
     $ret.code = 3
     $ret.lines.Add("New Kernel Linux version released -> $latestVersion") | Out-Null
+
+    # update the version file
+    $latestVersion | Out-File ./versions/linuxKernel -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret

@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = "v1.25.0"
+$VERSION = Get-Content ./versions/vscodeDocker
 
 # ret object
 $ret = [PSCustomObject]@{
@@ -36,6 +36,9 @@ if ($latestVersion -ne $VERSION) {
     $ret.linesformated.Add(
         "<$url>"
     ) | Out-Null
+
+    # update the version file
+    $latestVersion | Out-File ./versions/vscodeDocker -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret

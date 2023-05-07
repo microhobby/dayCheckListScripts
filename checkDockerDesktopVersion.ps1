@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = "4.19.0"
+$VERSION = Get-Content ./versions/dockerDesktop
 
 # for debug comment this
 $ErrorActionPreference = 'SilentlyContinue'
@@ -67,6 +67,9 @@ if ($latestVersion -ne $VERSION) {
     $ret.linesformated.Add(
         "<https://docs.docker.com/desktop/release-notes/>"
     ) | Out-Null
+
+    # update the version file
+    $latestVersion | Out-File ./versions/dockerDesktop -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret
