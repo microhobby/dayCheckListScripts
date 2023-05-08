@@ -28,10 +28,17 @@ $uri = "$graphEndpoint/me/todo/lists"
 $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
 
 # get my TODO list
-$test = $response.value[1]
+$_day = $null
+$response.value | ForEach-Object {
+    if ($_.displayName -eq "DAY") {
+        $_day = $_
+        $ret.lines.Add($_day.displayName) | Out-Null
+        $ret.lines.Add("-----------------------") | Out-Null
+    }
+}
 
 # get tasks
-$uri = "$graphEndpoint/me/todo/lists/$($test.id)/tasks"
+$uri = "$graphEndpoint/me/todo/lists/$($_day.id)/tasks"
 $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
 
 # get tasks
@@ -43,8 +50,6 @@ $response.value | ForEach-Object {
 
 if ($ret.lines.Count -gt 0) {
     $ret.code = 3
-    $ret.lines.Insert(0, "-----------------------") | Out-Null
-    $ret.lines.Insert(0, "TODO LIST") | Out-Null
 }
 
 # for debug purposes
