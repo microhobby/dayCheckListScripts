@@ -33,7 +33,7 @@ $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
 # get my TODO list
 $_day = $null
 $response.value | ForEach-Object {
-    if ($_.displayName -eq "DAY") {
+    if ($_.displayName -eq "GROCERIES") {
         $_day = $_
         $ret.lines.Add($_day.displayName) | Out-Null
         $ret.lines.Add("-----------------------") | Out-Null
