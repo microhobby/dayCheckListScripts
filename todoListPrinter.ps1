@@ -48,6 +48,8 @@ $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
 $response.value | ForEach-Object {
     if ($_.status -ne "completed") {
         $ret.lines.Add($_.title) | Out-Null
+        $ret.lines.Add("") | Out-Null
+        $ret.lines.Add("-----------------------") | Out-Null
     }
 }
 
