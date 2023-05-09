@@ -38,7 +38,7 @@ if ($latestVersion -ne $VSCODE_VERSION) {
     ) | Out-Null
 
     # update the version file test
-    $latestVersion | Out-File ./versions/vscode -Force -NoNewline
+    $latestVersion | Out-File "$PSScriptRoot/versions/vscode" -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret

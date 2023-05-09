@@ -25,7 +25,7 @@ if ($latestVersion -ne $VERSION) {
     $ret.lines.Add("New Kernel Linux version released -> $latestVersion") | Out-Null
 
     # update the version file
-    $latestVersion | Out-File ./versions/linuxKernel -Force -NoNewline
+    $latestVersion | Out-File "$PSScriptRoot/versions/linuxKernel" -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret
