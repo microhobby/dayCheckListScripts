@@ -43,6 +43,10 @@ $html = $web.Load($_url)
 
 $latestVersion = $html.DocumentNode.SelectSingleNode("//h2").InnerText
 
+# remove the \nlink
+$latestVersion = $latestVersion.Replace("`n", "")
+$latestVersion = $latestVersion.Replace("link", "")
+
 # ret object
 $ret = [PSCustomObject]@{
     lines = [System.Collections.ArrayList]::new()
