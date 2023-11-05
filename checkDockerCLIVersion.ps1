@@ -6,6 +6,7 @@ param()
 $VERSION = Get-Content "$PSScriptRoot/versions/dockerCLI"
 
 # for debug comment this
+$WarningPreference = 'SilentlyContinue'
 $ErrorActionPreference = 'SilentlyContinue'
 
 # use a nuget 🐥

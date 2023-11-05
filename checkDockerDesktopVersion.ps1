@@ -6,6 +6,7 @@ param()
 $VERSION = Get-Content "$PSScriptRoot/versions/dockerDesktop"
 
 # for debug comment this
+$WarningPreference = 'SilentlyContinue'
 $ErrorActionPreference = 'SilentlyContinue'
 
 # use a nuget 🐥
