@@ -64,10 +64,10 @@ foreach ($ghIssue in $obj) {
     $idExists = $issues | Where-Object { $_.id -eq $id }
 
     if (-not $idExists) {
-        $notCheckedIssues.Add($ghIssue)
+        $notCheckedIssues.Add($ghIssue) | Out-Null
         $issues.Add([Issue]@{
             id = $id
-        })
+        }) | Out-Null
     }
 }
 
