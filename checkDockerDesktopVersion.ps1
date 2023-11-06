@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = Get-Content "$PSScriptRoot/versions/dockerDesktop"
+$VERSION = Get-Content "$PSScriptRoot/../versions/dockerDesktop"
 
 # for debug comment this
 $WarningPreference = 'SilentlyContinue'
@@ -75,7 +75,7 @@ if ($latestVersion -ne $VERSION) {
     ) | Out-Null
 
     # update the version file
-    $latestVersion | Out-File "$PSScriptRoot/versions/dockerDesktop" -Force -NoNewline
+    $latestVersion | Out-File "$PSScriptRoot/../versions/dockerDesktop" -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret

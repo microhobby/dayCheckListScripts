@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = Get-Content "$PSScriptRoot/versions/vscodeDocker"
+$VERSION = Get-Content "$PSScriptRoot/../versions/vscodeDocker"
 
 # ret object
 $ret = [PSCustomObject]@{
@@ -38,7 +38,7 @@ if ($latestVersion -ne $VERSION) {
     ) | Out-Null
 
     # update the version file
-    $latestVersion | Out-File "$PSScriptRoot/versions/vscodeDocker" -Force -NoNewline
+    $latestVersion | Out-File "$PSScriptRoot/../versions/vscodeDocker" -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret

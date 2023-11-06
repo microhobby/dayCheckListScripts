@@ -3,7 +3,7 @@
 )]
 param()
 
-$VERSION = Get-Content "$PSScriptRoot/versions/dockerCLI"
+$VERSION = Get-Content "$PSScriptRoot/../versions/dockerCLI"
 
 # for debug comment this
 $WarningPreference = 'SilentlyContinue'
@@ -75,7 +75,7 @@ if ($latestVersion -ne $VERSION) {
     ) | Out-Null
 
     # update the version file
-    $latestVersion.Trim() | Out-File "$PSScriptRoot/versions/dockerCLI" -Force -NoNewline
+    $latestVersion.Trim() | Out-File "$PSScriptRoot/../versions/dockerCLI" -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret
