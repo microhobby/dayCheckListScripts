@@ -28,6 +28,7 @@ if ($null -eq $browser) {
         -ProviderName NuGet `
         -Scope CurrentUser `
         -RequiredVersion 1.11.46 `
+        -Source MyNuGet `
         -SkipDependencies `
         -Destination $env:NUGET_DEST `
         -Force | Out-Null
