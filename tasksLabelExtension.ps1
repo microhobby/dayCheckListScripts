@@ -45,6 +45,15 @@ if (-not (Test-Path $CHECKED)) {
 
     # save it
     $json | Out-File $CHECKED
+} else {
+    $_tmpIssues = $issues
+    $issues = New-Object Issues
+
+    foreach ($issue in $_tmpIssues) {
+        $issues.Add([Issue]@{
+            id = $issue.id
+        }) | Out-Null
+    }
 }
 
 # read it
