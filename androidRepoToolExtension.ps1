@@ -54,6 +54,15 @@ $issues = $json
 
 if ($null -eq $issues) {
     $issues = New-Object Issues
+}  else {
+    $_tmpIssues = $issues
+    $issues = New-Object Issues
+
+    foreach ($issue in $_tmpIssues) {
+        $issues.Add([Issue]@{
+            id = $issue.id
+        }) | Out-Null
+    }
 }
 
 # check if we have new issues
