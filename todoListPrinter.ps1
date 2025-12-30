@@ -3,6 +3,10 @@
 )]
 param()
 
+# WE NEED TO GET THE TOKEN FOR
+# https://developer.microsoft.com/en-us/graph/graph-explorer
+# https://graph.microsoft.com/v1.0/me/todo/lists
+
 # for debug comment this
 $ErrorActionPreference = 'SilentlyContinue'
 
@@ -33,7 +37,7 @@ $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
 # get my TODO list
 $_day = $null
 $response.value | ForEach-Object {
-    if ($_.displayName -eq "DAY") {
+    if ($_.displayName -eq "TODO") {
         $_day = $_
         $ret.lines.Add($_day.displayName) | Out-Null
         $ret.lines.Add("-----------------------") | Out-Null

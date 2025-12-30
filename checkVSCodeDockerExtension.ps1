@@ -14,7 +14,7 @@ $ret = [PSCustomObject]@{
 }
 
 $get = Invoke-WebRequest `
-    -Uri "https://api.github.com/repos/microsoft/vscode-docker/releases"
+    -Uri "https://api.github.com/repos/microsoft/vscode-containers/releases"
 
 $obj = ConvertFrom-Json $get
 # latest release

@@ -14,11 +14,11 @@ $ret = [PSCustomObject]@{
 }
 
 $get = Invoke-WebRequest `
-    -Uri "https://api.github.com/repos/torvalds/linux/git/matching-refs/tags/v6"
+    -Uri "https://api.github.com/repos/torvalds/linux/tags"
 
 $obj = ConvertFrom-Json $get
 # latest release
-$latestVersion = $obj[$obj.Count -1].ref
+$latestVersion = $obj[0].name
 
 if ($latestVersion -ne $VERSION) {
     $ret.code = 3
