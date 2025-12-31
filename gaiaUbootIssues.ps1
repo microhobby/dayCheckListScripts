@@ -3,8 +3,8 @@
 )]
 param()
 
-$repoGroup = "torizon"
-$repoName = "vscode-torizon-templates"
+$repoGroup = "gaiaBuildSystem"
+$repoName = "u-boot"
 
 # ret object
 $ret = [PSCustomObject]@{

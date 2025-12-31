@@ -3,6 +3,9 @@
 )]
 param()
 
+$repoGroup = "microhobby"
+$repoName = "linuxkerneldev"
+
 # ret object
 $ret = [PSCustomObject]@{
     lines = [System.Collections.ArrayList]::new()
@@ -12,7 +15,7 @@ $ret = [PSCustomObject]@{
 }
 
 $get = Invoke-WebRequest `
-    -Uri "https://api.github.com/repos/microhobby/linuxkerneldev/issues?state=open"
+    -Uri "https://api.github.com/repos/$repoGroup/$repoName/issues?state=open"
 
 $obj = ConvertFrom-Json $get
 # how many issues we have
@@ -20,8 +23,8 @@ $count = $obj.Count
 
 if ($count -gt 0) {
     $ret.code = 1
-    $ret.lines.Add("microhobby/") | Out-Null
-    $ret.lines.Add("linuxkerneldev") | Out-Null
+    $ret.lines.Add("$repoGroup/") | Out-Null
+    $ret.lines.Add("$repoName") | Out-Null
     $ret.lines.Add("-----------------------") | Out-Null
     $ret.lines.Add("OPEN ISSUES: $count") | Out-Null
 

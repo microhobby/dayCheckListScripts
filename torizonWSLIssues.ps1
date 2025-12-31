@@ -4,7 +4,7 @@
 param()
 
 $repoGroup = "torizon"
-$repoName = "vscode-torizon-templates"
+$repoName = "cookbook-torizon-wsl"
 
 # ret object
 $ret = [PSCustomObject]@{
