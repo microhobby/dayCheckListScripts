@@ -3,7 +3,7 @@
 )]
 param()
 
-$VSCODE_VERSION = Get-Content "$PSScriptRoot/versions/vscode"
+$VSCODE_VERSION = Get-Content "$PSScriptRoot/../versions/vscode"
 
 # ret object
 $ret = [PSCustomObject]@{
@@ -38,7 +38,7 @@ if ($latestVersion -ne $VSCODE_VERSION) {
     ) | Out-Null
 
     # update the version file test
-    $latestVersion | Out-File "$PSScriptRoot/versions/vscode" -Force -NoNewline
+    $latestVersion | Out-File "$PSScriptRoot/../versions/vscode" -Force -NoNewline
 }
 
 $json = ConvertTo-Json -InputObject $ret
