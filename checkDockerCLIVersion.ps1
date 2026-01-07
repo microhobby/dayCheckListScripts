@@ -3,7 +3,13 @@
 )]
 param()
 
-$VERSION = Get-Content "$PSScriptRoot/../versions/dockerCLI"
+# check if the file exists, if not touch it
+$VERSION = ""
+if (-not (Test-Path "$PSScriptRoot/../versions/dockerCLI")) {
+    New-Item -Path "$PSScriptRoot/../versions/dockerCLI" -ItemType File -Force | Out-Null
+} else {
+    $VERSION = Get-Content "$PSScriptRoot/../versions/dockerCLI"
+}
 
 # for debug comment this
 $ErrorActionPreference = 'SilentlyContinue'

@@ -3,7 +3,13 @@
 )]
 param()
 
-$VERSION = Get-Content "$PSScriptRoot/../versions/vscodeDocker"
+# check if the file exists, if not touch it
+$VERSION = ""
+if (-not (Test-Path "$PSScriptRoot/../versions/vscodeDocker")) {
+    New-Item -Path "$PSScriptRoot/../versions/vscodeDocker" -ItemType File -Force | Out-Null
+} else {
+    $VERSION = Get-Content "$PSScriptRoot/../versions/vscodeDocker"
+}
 
 # ret object
 $ret = [PSCustomObject]@{

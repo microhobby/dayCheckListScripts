@@ -3,7 +3,13 @@
 )]
 param()
 
-$VERSION = Get-Content "$PSScriptRoot/../versions/linuxKernel"
+# check if the file exists, if not touch it
+$VERSION = ""
+if (-not (Test-Path "$PSScriptRoot/../versions/linuxKernel")) {
+    New-Item -Path "$PSScriptRoot/../versions/linuxKernel" -ItemType File -Force | Out-Null
+} else {
+    $VERSION = Get-Content "$PSScriptRoot/../versions/linuxKernel"
+}
 
 # ret object
 $ret = [PSCustomObject]@{
